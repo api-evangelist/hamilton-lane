@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,10 +9,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Hamilton Lane
 providerId: hamilton-lane
-publisherName: Hamilton Lane
-serviceCategory: API
+publisherName: Hamilton Lane Incorporated
+serviceCategory: Private Markets Data / Analytics Subscription
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Private Markets
   - Asset Management
@@ -19,20 +21,25 @@ tags:
   - FinOps
   - Cost Management
   - FOCUS
-description: FinOps framework definition for the Hamilton Lane API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: 'FOCUS-aligned FinOps placeholder for Hamilton Lane: institutional Cobalt-based
+  subscription model, no public per-API pricing. Meters describe subscription seats and API
+  utilization for allocation across investment teams.'
+notes: No public commercial model is published. Reconcile against the customer's Cobalt subscription
+  agreement.
+sources:
+  - https://www.hamiltonlane.com/en-us
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Track Cobalt seat utilization and API call volume via the Cobalt admin console.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Allocate Cobalt subscription cost across investment teams (private equity,
+      private credit, real assets, infrastructure) using seat assignments.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Right-size seat counts; consolidate API consumption through a central data team
+      rather than per-analyst direct calls.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Designate a Cobalt program owner; review seat utilization and renewal terms
+      annually.
 domains:
   - name: Understand Usage and Cost
     capabilities:
@@ -62,53 +69,40 @@ domains:
       - Onboarding Workloads
       - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Hamilton Lane
-  ServiceCategory: Developer Tools / API
+  ServiceName: Hamilton Lane Cobalt
+  ServiceCategory: Private Markets Data / Analytics
   ProviderName: Hamilton Lane
-  PublisherName: Hamilton Lane
-  InvoiceIssuerName: Hamilton Lane
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Hamilton Lane Incorporated
+  InvoiceIssuerName: Hamilton Lane Incorporated
+  PricingCategory: Subscription
+  PricingUnit: seat
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
+  - name: cobalt_seats
+    description: Cobalt platform user seats
+    unit: seat-month
+    aggregation: max
+    dimensions:
+      - team
+      - role
   - name: api_requests
-    description: Count of billable API requests
+    description: Hamilton Lane / Cobalt API request volume (allocation meter)
     unit: request
     aggregation: sum
     dimensions:
-      - api
       - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
+      - team
+      - dataset
 apis:
   - name: Hamilton Lane API
     baseURL: https://api.hamiltonlane.com
@@ -119,11 +113,11 @@ apis:
     serviceName: Hamilton Lane API
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per Seat
+    metric: billed_cost / cobalt_seats
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Cost per Active Investment Team
+    metric: billed_cost / active_teams
     target: TBD
 maintainers:
   - FN: Kin Lane
