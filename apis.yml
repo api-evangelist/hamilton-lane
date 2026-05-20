@@ -28,6 +28,10 @@ apis:
     description: >-
       The Hamilton Lane API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: GitHubOrganization
+    url: https://github.com/hamiltonlane
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/hamilton-lane
   - type: Website
     url: https://www.hamiltonlane.com
 maintainers:
