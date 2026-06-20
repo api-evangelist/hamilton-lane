@@ -2,7 +2,7 @@ aid: hamilton-lane
 url: https://raw.githubusercontent.com/api-evangelist/hamilton-lane/refs/heads/main/apis.yml
 name: Hamilton Lane
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Private Markets
   - Asset Management
@@ -19,7 +19,7 @@ apis:
       - Private Markets
       - Asset Management
       - Investment
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.hamiltonlane.com
     humanURL: https://developer.hamiltonlane.com
     properties:
