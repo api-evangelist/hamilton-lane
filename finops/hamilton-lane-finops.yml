@@ -118,10 +118,8 @@ apis:
 unitEconomics:
   - name: Cost per Seat
     metric: billed_cost / cobalt_seats
-    target: TBD
   - name: Cost per Active Investment Team
     metric: billed_cost / active_teams
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
