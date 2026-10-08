@@ -51,6 +51,12 @@ apis:
     description: >-
       The Hamilton Lane API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: Plans
+    url: plans/hamilton-lane-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/hamilton-lane-rate-limits.yml
+  - type: FinOps
+    url: finops/hamilton-lane-finops.yml
   - type: DomainSecurity
     url: security/hamilton-lane-domain-security.yml
   - type: GitHubOrganization
